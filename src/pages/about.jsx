@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import store from '../store'
-import {connect} from "react-redux"
+import {connect, Provider,useSelector,useDispatch} from "react-redux"
 import { addNumberAction, subNumberAction } from '../store/actionCreators'
 
 export class About extends PureComponent {
@@ -16,7 +16,7 @@ export class About extends PureComponent {
   }
 
   render() {
-    const { counter } = this.props
+    const { counter,banners,recommends } = this.props
 
     return (
       <div>
@@ -26,6 +26,26 @@ export class About extends PureComponent {
           <button onClick={e => this.calcNumber(-6,true)}>-6</button>
           <button onClick={e => this.calcNumber(-8,true)}>-8</button>
           <button onClick={e => this.calcNumber(88,false)}>-8</button>
+        </div>
+        <div className='banner'>
+          <h2>轮播图数据:</h2>
+          <ul>
+            {
+              banners.map((item,index) => {
+                return <li key={index}>{item.title}</li>
+              })
+            }
+          </ul>
+        </div>
+        <div className='recommend'>
+          <h2>推荐数据:</h2>
+          <ul>
+            {
+              recommends.map((item,index) => {
+                return <li key={index}>{item.title}</li>
+              })
+            }
+          </ul>
         </div>
       </div>
     )
@@ -42,7 +62,9 @@ export class About extends PureComponent {
 
 
 const mapStateToProps = (state) => ({
-  counter:state.counter
+  counter:state.counter,
+  banners:state.banners,
+  recommends:state.recommends
 })
 
 // function fn2(dispatch){
