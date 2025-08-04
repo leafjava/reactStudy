@@ -1,8 +1,19 @@
 import React, { PureComponent } from 'react'
 import store from '../store'
 import {connect} from "react-redux"
+import { addNumberAction, subNumberAction } from '../store/actionCreators'
 
 export class About extends PureComponent {
+
+  calcNumber(num, isAdd){
+    if(isAdd){
+      console.log('加',num)
+      this.props.addNumber(num)
+    } else {
+      console.log('减',num)
+      this.props.subNumber(num)
+    }
+  }
 
   render() {
     const { counter } = this.props
@@ -11,9 +22,10 @@ export class About extends PureComponent {
       <div>
         <h2>About Page:{counter}</h2>
         <div>
-          <button>+6</button>
-          <button>-6</button>
-          <button>-8</button>
+          <button onClick={e => this.calcNumber(6,true)}>+6</button>
+          <button onClick={e => this.calcNumber(-6,true)}>-6</button>
+          <button onClick={e => this.calcNumber(-8,true)}>-8</button>
+          <button onClick={e => this.calcNumber(88,false)}>-8</button>
         </div>
       </div>
     )
@@ -27,8 +39,27 @@ export class About extends PureComponent {
 //   }
 // }
 
+
+
 const mapStateToProps = (state) => ({
   counter:state.counter
 })
 
-export default connect(mapStateToProps)(About)
+// function fn2(dispatch){
+//   return {
+//     addNumber(num){
+//       dispatch(addNumberAction(num))
+//     },
+//     subNumber(num){
+//       dispatch(subNumberAction(num))
+//     }
+//   }
+// }
+
+const mapDispatchToProps = (dispatch) => ({
+  addNumber:(num) => dispatch(addNumberAction(num)),
+  subNumber:(num) => dispatch(subNumberAction(num))
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(About)
