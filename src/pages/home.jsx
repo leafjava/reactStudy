@@ -7,7 +7,14 @@ export class home extends PureComponent {
     super()
 
     this.state = {
-      counter:store.getState().counter
+      counter:store.getState().counter,
+
+      message:"Hello world",
+      friends:[
+        {id:111,name:'why'},
+        {id:112,name:'kobe'},
+        {id:113,name:'james'},
+      ]
     }
   }
 
