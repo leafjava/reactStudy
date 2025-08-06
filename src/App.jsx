@@ -11,14 +11,14 @@ export class App extends PureComponent {
     super()
 
     this.state = {
-      counter:store.getState().counter
+      counter:store.getState().counter.counter
       // counter:0
     }
   }
 
   componentDidMount(){
     store.subscribe(()=>{
-      const state = store.getState()
+      const state = store.getState().counter
       this.setState({counter:state.counter})
     })
   }
