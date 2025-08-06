@@ -14,6 +14,27 @@ const reducer = combineReducers({
   user:userReducer
 })
 
+// combineReducers 实现原理(了解)
+// function reducer(state = {},action){
+
+//   // 返回一个对象,store的state
+//   return {
+//     counter:counterReducer(state.counter, action)
+//     home:homeReducer(state.home, action)
+//     user:userReducer(state.home, action)
+
+//     // counter:{
+//     //   counter:200
+//     // },
+//     // home:{
+//     //   banners:[],
+//     //   recommends:[]
+//     // },
+//     // user:{
+//     //   userInfo:{nickname:'刘军老师',level:100}
+//     // }
+//   }
+// }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
