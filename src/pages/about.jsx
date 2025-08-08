@@ -83,7 +83,12 @@ const mapStateToProps = (state) => ({
 // }
 
 const mapDispatchToProps = (dispatch) => ({
-  addNumber:(num) => dispatch(addNumberAction(num)),
+  addNumber:(num) => {
+    // const action = addNumberAction(num)
+    // console.log('派发一个action',action)
+    dispatch(addNumberAction(num))
+    // console.log(store.getState())
+  },
   subNumber:(num) => dispatch(subNumberAction(num))
 })
 
