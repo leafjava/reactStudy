@@ -1,5 +1,5 @@
 import { configureStore,applyMiddleware,compose,combineReducers } from '@reduxjs/toolkit'
-import thunk from "redux-thunk"
+// import thunk from "redux-thunk"
 import counterReducer from './counter'
 import homeReducer from './home'
 import userReducer from './user'
@@ -61,5 +61,25 @@ function log(store){
   store.dispatch = logAndDispatch
 }
 log(store)
+
+function thunk(store){
+  const next = store.dispatch
+  function dispatchThunk(action){
+    if(typeof action === "function"){
+      action(store.dispatch,store.getState)
+    } else {
+      next(action)
+    }
+  }
+  store.dispatch = dispatchThunk
+}
+
+// store.dispatch(function(dispatch,getState){
+//   dispatch({
+
+//   })
+// })
+
+thunk(store)
 
 export default store
